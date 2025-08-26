@@ -569,10 +569,10 @@
       background: white;
       border-radius: 50%;
       opacity: 0.6;
-      animation: twinkle 3s infinite ease-in-out;
+      animation: twinkle-dot 3s infinite ease-in-out;
     }
 
-    @keyframes twinkle {
+    @keyframes twinkle-dot {
       0%, 100% { opacity: 0.2; transform: scale(0.8); }
       50% { opacity: 1; transform: scale(1.3); }
     }
@@ -706,40 +706,7 @@
     });
   })();
 
-  // Simple lightbox for gallery preview
-  (function() {
-    const lb = document.getElementById('lightbox');
-    const imgEl = lb ? lb.querySelector('.lightbox-img') : null;
-    const btnClose = lb ? lb.querySelector('.lightbox-close') : null;
-    const backdrop = lb ? lb.querySelector('.lightbox-backdrop') : null;
-    const gallery = document.querySelector('#galeri .gallery-mosaic');
-    if (!lb || !imgEl || !gallery) return;
-
-    function open(src, alt) {
-      imgEl.src = src;
-      imgEl.alt = alt || 'Pratinjau';
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-    function close() {
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      imgEl.removeAttribute('src');
-      document.body.style.overflow = '';
-    }
-
-    gallery.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target && target.tagName === 'IMG') {
-        open(target.src, target.alt);
-      }
-    });
-    btnClose && btnClose.addEventListener('click', close);
-    backdrop && backdrop.addEventListener('click', close);
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
-  })();
-</script>
+  </script>
 </head>
 <body>
   <!-- Global sky overlay for shooting stars -->
@@ -1073,15 +1040,15 @@
           <h2>Akad Nikah</h2>
           <ul class="list">
             <li class="detail-date">Sabtu, 13 September 2025</li>
-            <li><strong><span class="time-pill">08:00</span></li>
+            <li><strong><span class="time-pill">08:00</span></strong></li>
             <li class="addr">Gedung Aula Griya Harapan Difabel Dinas Sosial Prov Jabar — Jl. Jend. H. Amir Machmud No.331, Cibabat, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40523</li>
           </ul>
         </div>
         <div class="card detail-card">
           <h2>Resepsi</h2>
           <ul class="list">
-            <li class="detail-date"><strong>Sabtu, 13 September 2025</li>
-            <li><strong><span class="time-pill">11:00 - 14:00</span></li>
+            <li class="detail-date"><strong>Sabtu, 13 September 2025</strong></li>
+            <li><strong><span class="time-pill">11:00 - 14:00</span></strong></li>
             <li class="addr">Gedung Aula Griya Harapan Difabel Dinas Sosial Prov Jabar — Jl. Jend. H. Amir Machmud No.331, Cibabat, Kec. Cimahi Utara, Kota Cimahi, Jawa Barat 40523</li>
           </ul>
         </div>
@@ -1161,42 +1128,43 @@
 
   <!-- RESERVATION / RSVP -->
   <section class="section" id="reservasi">
-    <div class="inner">
-      <h2 style="font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; font-weight: 400; color:#462159; font-size: clamp(28px, 6vw, 48px); margin: 0 0 12px; text-align:center;">Reservation</h2>
-      <p class="muted" style="color:#462159; text-align:center; margin-bottom:16px;">Konfirmasi kehadiran Anda untuk mempermudah persiapan kami.</p>
+  <div class="inner">
+    <h2 style="font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; font-weight: 400; color:#462159; font-size: clamp(28px, 6vw, 48px); margin: 0 0 12px; text-align:center;">Reservation</h2>
+    <p class="muted" style="color:#462159; text-align:center; margin-bottom:16px;">Konfirmasi kehadiran Anda untuk mempermudah persiapan kami.</p>
 
-      <form class="card form" id="rsvpForm" novalidate>
-          <div class="form-group">
-            <label for="nama">Nama</label>
-            <input type="text" id="nama" name="nama" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
+    <form class="card form" id="rsvpForm">
+      <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" id="nama" name="nama" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
 
-     
-          <div class="form-group">
-            <label for="kehadiran">Konfirmasi Kehadiran</label>
-            <select id="kehadiran" name="kehadiran" required>
-              <option value="" disabled selected>Pilih status</option>
-              <option value="hadir">Hadir</option>
-              <option value="tidak_hadir">Tidak Hadir</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="jumlah">Jumlah Tamu</label>
-            <input type="number" id="jumlah" name="jumlah" min="1" max="10" step="1" required />
-          </div>
+      <div class="form-group">
+        <label for="kehadiran">Konfirmasi Kehadiran</label>
+        <select id="kehadiran" name="kehadiran" required>
+          <option value="" disabled selected>Hadir / Tidak Hadir</option>
+          <option value="Hadir">Hadir</option>
+          <option value="Tidak Hadir">Tidak Hadir</option>
+        </select>
+      </div>
 
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary btn-block">Kirim</button>
-          <button type="reset" class="btn btn-ghost">Reset</button>
-        </div>
-        <p id="rsvpMsg" class="muted" style="text-align:center; display:none; margin-top:8px;"></p>
-      </form>
-    </div>
-  </section>
+      <div class="form-group">
+        <label for="jumlah">Jumlah Tamu</label>
+        <input type="number" id="jumlah" name="jumlah" min="1" max="10" step="1" required />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-block">Kirim</button>
+        <button type="reset" class="btn btn-ghost">Reset</button>
+      </div>
+      <p id="rsvpMsg" class="muted" style="text-align:center; display:none; margin-top:8px;"></p>
+    </form>
+  </div>
+</section>
+
 
 
   <!-- Petals overlay init (per section, ringan) -->
@@ -1301,44 +1269,66 @@
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
     })();
 
-    // Simple RSVP handler (local only)
-    (function() {
-      const form = document.getElementById('rsvpForm');
-      const msg = document.getElementById('rsvpMsg');
-      if (!form || !msg) return;
+    // RSVP handler: submit ke Google Apps Script + simpan lokal
+     (function() {
+    const form = document.getElementById('rsvpForm');
+    const msg = document.getElementById('rsvpMsg');
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbz6efaeIPJBUlEq098Czhd3CnJiqmSe55K0BSS26RkmqkOWzMBmljbEp2FRdr_BWAez/exec'; // ganti dengan URL Web App publish Apps Script
+    if (!form || !msg) return;
 
-      function show(message, ok = true) {
-        msg.textContent = message;
-        msg.style.display = 'block';
-        msg.style.color = ok ? '#16a34a' : '#dc2626';
+    function show(message, ok = true) {
+      msg.textContent = message;
+      msg.style.display = 'block';
+      msg.style.color = ok ? '#16a34a' : '#dc2626';
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const fd = new FormData(form);
+      const data = Object.fromEntries(fd.entries());
+
+      // Basic validation
+      if (!data.nama || !data.email || !data.kehadiran || !data.jumlah) {
+        show('Lengkapi semua kolom.', false);
+        return;
       }
 
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const data = Object.fromEntries(new FormData(form).entries());
-        // Basic validation
-        if (!data.nama || !data.email || !data.kehadiran || !data.jumlah) {
-          show('Lengkapi semua kolom.', false);
-          return;
-        }
-        // Simpan ke localStorage sebagai contoh (ganti ke API jika diperlukan)
-        try {
-          const list = JSON.parse(localStorage.getItem('rsvp_list') || '[]');
-          list.push({
-            nama: data.nama,
-            email: data.email,
-            kehadiran: data.kehadiran,
-            jumlah: Number(data.jumlah),
-            ts: new Date().toISOString()
-          });
-          localStorage.setItem('rsvp_list', JSON.stringify(list));
-          show('Terima kasih! Konfirmasi Anda telah disimpan.');
-          form.reset();
-        } catch (err) {
-          show('Maaf, terjadi kesalahan saat menyimpan.', false);
-        }
-      });
-    })();
+      // Kirim ke Google Apps Script
+      try {
+        const params = new URLSearchParams();
+        fd.forEach((v, k) => params.append(k, v));
+        params.append('ts', new Date().toISOString());
+
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, // ⬅ perbaikan
+          body: params
+        });
+
+        const text = await res.text();
+        console.log("Response GAS:", text);
+      } catch (err) {
+        console.error("Error kirim ke GAS:", err);
+      }
+
+      // Simpan ke localStorage sebagai backup
+      try {
+        const list = JSON.parse(localStorage.getItem('rsvp_list') || '[]');
+        list.push({
+          nama: data.nama,
+          email: data.email,
+          kehadiran: data.kehadiran,
+          jumlah: Number(data.jumlah),
+          ts: new Date().toISOString()
+        });
+        localStorage.setItem('rsvp_list', JSON.stringify(list));
+        show('Terima kasih! Konfirmasi Anda telah disimpan.');
+        form.reset();
+      } catch (err) {
+        show('Maaf, terjadi kesalahan saat menyimpan.', false);
+      }
+    });
+  })();
   </script>
 
   <!-- Bintang Kejora di galeri: 5 buah, bentuk kejora (tanpa titik bulat) dan berkedip -->
