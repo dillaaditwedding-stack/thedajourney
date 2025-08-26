@@ -852,14 +852,211 @@
   </section>
 
    <!-- OUR STORY -->
-  <section class="section" id="our-story">
+  <section class="section" id="our-story" style="position: relative; overflow:hidden;">
     <div class="inner">
       <div class="mempelai-intro">
-        <p class="salam">Our Story</p>
-        <p class="ajakan">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk hadir dalam acara pernikahan putra-putri kami:</p>
+        <p class="salam" style="font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; font-weight:400; color:#462159;">Our Story</p>
+        <p class="ajakan" style="font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; color:#462159;">Perjalanan singkat kami.</p>
       </div>
-    
+
+      <div class="story">
+        <div class="story-item">
+          <h3 class="story-title">Awal bertemu</h3>
+          <p class="story-text">Saat Dila sedang melaksanakan magang di Dinsos, bertemu dengan Adit yang menjadi koordinator mahasiswa magang.</p>
+          <p class="story-text">Tak lama saling mengenal, Adit menunjukan keseriusan pada hubungan ini, menyatakan keseriusan pada tanggal 22 Januari 2023 secara pribadi antara Dila dan Adit.</p>
+        </div>
+        <div class="story-item">
+          <h3 class="story-title">Tunangan</h3>
+          <p class="story-text">Beberapa bulan setelah wisuda, Adit memberanikan diri untuk berbicara kepada kedua orang tua dan kakak-kakak Dila untuk meminang Dila. Tak lama setelah itu dilaksanakan acara pertunangan di kediaman Dila pada tanggal 27 April 2024.</p>
+        </div>
+        <div class="story-item">
+          <h3 class="story-title">Persiapan pernikahan</h3>
+          <p class="story-text">Saat sedang mempersiapkan pernikahan, alhamdulillah Dila diterima kerja di luar kota. Namun hal tersebut mengharuskan LDR dan menunda pernikahan.</p>
+        </div>
+        <div class="story-item">
+          <h3 class="story-title">Pernikahan</h3>
+          <p class="story-text">Setelah akhirnya satu tahun bekerja, Dila diperbolehkan untuk menikah dan pernikahan akan dilaksanakan tanggal 13 September 2025.</p>
+        </div>
+      </div>
+
+      <div class="bubble-field" aria-hidden="true">
+        <span class="bubble" style="--l:6%; --s:1.1; --dur:18s; --delay:0s;"></span>
+        <span class="bubble" style="--l:14%; --s:0.8; --dur:16s; --delay:2s;"></span>
+        <span class="bubble" style="--l:22%; --s:1.3; --dur:20s; --delay:1s;"></span>
+        <span class="bubble" style="--l:30%; --s:0.9; --dur:17s; --delay:3s;"></span>
+        <span class="bubble" style="--l:38%; --s:1.2; --dur:21s; --delay:0.5s;"></span>
+        <span class="bubble" style="--l:46%; --s:0.7; --dur:15s; --delay:4s;"></span>
+        <span class="bubble" style="--l:54%; --s:1.0; --dur:19s; --delay:1.5s;"></span>
+        <span class="bubble" style="--l:62%; --s:0.85; --dur:16s; --delay:2.5s;"></span>
+        <span class="bubble" style="--l:70%; --s:1.25; --dur:22s; --delay:0.8s;"></span>
+        <span class="bubble" style="--l:78%; --s:0.95; --dur:18s; --delay:2.2s;"></span>
+        <span class="bubble" style="--l:86%; --s:1.15; --dur:20s; --delay:1.2s;"></span>
+        <span class="bubble" style="--l:92%; --s:0.75; --dur:15s; --delay:3.2s;"></span>
+      </div>
     </div>
+    <style>
+      /* Our Story timeline styles */
+      #our-story .story {
+        position: relative;
+        margin: 16px 0 8px;
+        padding: 8px 0;
+      }
+      /* Vertical line - animated draw */
+      #our-story .story::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 22px;             /* mobile: line on left */
+        width: 3px;
+        background: linear-gradient(#462159, #462159) no-repeat;
+        background-size: 100% 0%;
+        background-position: top left;
+        opacity: 0.35;
+        border-radius: 2px;
+        transition: background-size 1.2s ease-out;
+      }
+      #our-story.is-visible .story::before { background-size: 100% 100%; }
+
+      /* Card item with enter animation */
+      #our-story .story-item {
+        position: relative;
+        background: rgba(255,255,255,0.92);
+        border: 1px solid rgba(2,6,23,0.08);
+        border-radius: 16px;
+        padding: 16px 18px;
+        box-shadow: var(--shadow);
+        margin: 0 0 16px 48px;  /* clear the line + dot on mobile */
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity .6s ease-out, transform .6s ease-out;
+      }
+      #our-story .story-item.in-view { opacity: 1; transform: translateY(0); }
+      /* Subtle stagger for children */
+      #our-story .story-item.in-view .story-title { animation: fadeSlide .6s ease-out .05s both; }
+      #our-story .story-item.in-view .story-text { animation: fadeSlide .6s ease-out .15s both; }
+      @keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0);} }
+
+      /* Timeline dot with pulse */
+      #our-story .story-item::before {
+        content: "";
+        position: absolute;
+        top: 22px;
+        left: -30px;            /* mobile: dot at the line */
+        width: 14px;
+        height: 14px;
+        background: #462159;
+        border: 3px solid #8F729F;
+        border-radius: 999px;
+        box-shadow: 0 0 0 4px rgba(70,33,89,0.12);
+        transform: scale(0.8);
+        opacity: 0.85;
+      }
+      #our-story .story-item.in-view::before {
+        animation: pulseDot 1.2s ease-out forwards;
+      }
+      @keyframes pulseDot {
+        0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(70,33,89,0.18); }
+        60% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(70,33,89,0); }
+        100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(70,33,89,0); }
+      }
+
+      /* Headings and text */
+      #our-story .story-title {
+        font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif;
+        color: #462159;
+        font-weight: 400;
+        font-size: clamp(22px, 3.4vw, 30px);
+        margin: 0 0 6px;
+      }
+      #our-story .story-text {
+        font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif;
+        color: #8F729F;
+        margin: 0 0 8px;
+        line-height: 1.7;
+      }
+
+      /* Desktop: alternate left/right around center line */
+      @media (min-width: 760px) {
+        #our-story .story { padding: 12px 0; }
+        #our-story .story::before { left: 50%; transform: translateX(-50%); }
+        #our-story .story-item {
+          width: calc(50% - 36px);
+          margin: 0 0 18px 0;
+        }
+        #our-story .story-item:nth-child(odd) {
+          margin-right: auto;   /* left side */
+          padding-right: 22px;
+          transform: translateX(-8px); /* initial slide from center */
+        }
+        #our-story .story-item:nth-child(even) {
+          margin-left: auto;    /* right side */
+          padding-left: 22px;
+          transform: translateX(8px);  /* initial slide from center */
+        }
+        #our-story .story-item.in-view:nth-child(odd),
+        #our-story .story-item.in-view:nth-child(even) {
+          transform: translateX(0); /* settle */
+        }
+        #our-story .story-item:nth-child(odd)::before { right: -38px; left: auto; }
+        #our-story .story-item:nth-child(even)::before { left: -38px; }
+      }
+
+      /* Bubble background */
+      #our-story .bubble-field {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      #our-story .bubble {
+        position: absolute;
+        left: var(--l, 50%);
+        bottom: -60px;
+        width: calc(24px * var(--s, 1));
+        height: calc(24px * var(--s, 1));
+        background: #462159;
+        opacity: 0.18;
+        border-radius: 50%;
+        filter: blur(0.4px);
+        animation: bubble-rise var(--dur, 18s) linear var(--delay, 0s) infinite;
+      }
+      @keyframes bubble-rise {
+        0%   { transform: translateY(0); opacity: 0; }
+        10%  { opacity: 0.25; }
+        90%  { opacity: 0.25; }
+        100% { transform: translateY(-120vh); opacity: 0; }
+      }
+    </style>
+
+    <script>
+      // Reveal animations for Our Story timeline using IntersectionObserver
+      (function() {
+        const section = document.getElementById('our-story');
+        if (!section) return;
+        const items = section.querySelectorAll('.story-item');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+            }
+          });
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+
+        items.forEach(el => observer.observe(el));
+
+        // Mark section visible to draw the vertical line
+        const secObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              section.classList.add('is-visible');
+            }
+          });
+        }, { threshold: 0.2 });
+        secObserver.observe(section);
+      })();
+    </script>
   </section>
 
   <!-- DETAIL ACARA -->
