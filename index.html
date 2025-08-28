@@ -464,7 +464,7 @@
     #detail .grid { gap: 16px; }
 
     .detail-card {
-      background: #462159;
+      background: #e2e0ed;
       border: 2px solid #8F729F;
       border-radius: var(--radius);
       color: #fff;
@@ -481,7 +481,7 @@
     }
     .detail-card h2 {
       font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
-      color: #fff;
+      color: #8F729F;
       font-weight: 400;
       letter-spacing: 0.02em;
       margin: 0 0 8px;
@@ -510,11 +510,33 @@
     }
 
     /* Address/location text */
-    .addr { color: #fff; font-weight: 200; font-size: small;}
+    .addr { color: #8F729F; font-weight: 200; font-size: small;}
 
     /* Centered list without bullets */
     .detail-card .list { list-style: none; padding-left: 0; margin: 8px 0 0; }
     .detail-card .list li { margin: 6px 0; }
+
+    /* Amplop Digital card styles: separated from .detail-card for independent editing */
+    .amplop-card {
+      background: #462159;
+      border: 2px solid #8F729F;
+      border-radius: var(--radius);
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .amplop-card h2 {
+      font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      color: #ffffff;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin: 0 0 8px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.35);
+    }
+    .amplop-card .list { list-style: none; padding-left: 0; margin: 8px 0 0; }
+    .amplop-card .list li { margin: 6px 0; }
 
     /* Map tweaks */
     #detail .map-embed { border-radius: 20px; overflow: hidden; border: 3px solid #8F729F; box-shadow: 0 16px 40px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.25); background: linear-gradient(135deg, rgba(143,114,159,0.25), rgba(70,33,89,0.25)); }
@@ -1515,7 +1537,7 @@
       <p class="muted" style="color:#462159; text-align:center; margin-bottom:16px;">Jika berkenan mengirim hadiah, berikut nomor rekening:</p>
 
      
-        <div class="card detail-card">
+        <div class="card amplop-card">
           <h2>Fadillah Istiqomah</h2>
           <ul class="list">
             <li>Bank BRI</li>
@@ -1527,7 +1549,7 @@
         <br>
         <br>
 
-        <div class="card detail-card">
+        <div class="card amplop-card">
           <h2>Achmad Jatnika</h2>
           <ul class="list">
             <li>Bank BRI</li>
