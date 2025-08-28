@@ -10,15 +10,15 @@
   <meta property="og:title" content="Undangan Pernikahan - Dilla & Adit">
   <meta property="og:description" content="Undangan pernikahan Fadillah Istiqomah (Dilla) & Achmad Jatnika (Adit)">
   <meta property="og:url" content="https://thedajourney.space/">
-  <meta property="og:image" content="https://thedajourney.space/assets/preview_image.JPG">
-  <meta property="og:image:secure_url" content="https://thedajourney.space/assets/preview_image.JPG">
+  <meta property="og:image" content="https://thedajourney.space/assets/preview_image.jpg">
+  <meta property="og:image:secure_url" content="https://thedajourney.space/assets/preview_image.jpg">
   <meta property="og:image:alt" content="Foto mempelai Dilla & Adit">
   <meta property="og:image:type" content="image/jpeg">
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Undangan Pernikahan - Dilla & Adit">
   <meta name="twitter:description" content="Undangan pernikahan Fadillah Istiqomah (Dilla) & Achmad Jatnika (Adit)">
-  <meta name="twitter:image" content="https://thedajourney.space/assets/preview_image.JPG">
+  <meta name="twitter:image" content="https://thedajourney.space/assets/preview_image.jpg">
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
@@ -510,7 +510,7 @@
     }
 
     /* Address/location text */
-    .addr { color: #8F729F; font-weight: 200; font-size: small;}
+    .addr { color: #8F729F; font-weight: 200; font-size: small; word-break: break-word;}
 
     /* Centered list without bullets */
     .detail-card .list { list-style: none; padding-left: 0; margin: 8px 0 0; }
@@ -537,6 +537,10 @@
     }
     .amplop-card .list { list-style: none; padding-left: 0; margin: 8px 0 0; }
     .amplop-card .list li { margin: 6px 0; }
+
+    /* Amplop grid layout for responsiveness */
+    .amplop-grid { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: stretch; }
+    @media (min-width: 760px) { .amplop-grid { grid-template-columns: 1fr 1fr; } }
 
     /* Map tweaks */
     #detail .map-embed { border-radius: 20px; overflow: hidden; border: 3px solid #8F729F; box-shadow: 0 16px 40px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.25); background: linear-gradient(135deg, rgba(143,114,159,0.25), rgba(70,33,89,0.25)); }
@@ -646,6 +650,36 @@
   .music-btn:active { transform: translateY(1px) scale(0.98); }
   .music-btn.is-playing::after { content: '❚❚'; }
   .music-btn:not(.is-playing)::after { content: '▶'; }
+
+  /* Responsive tweaks for various screens */
+  #footer {
+    background: url('assets/bg_hero.png') center/cover no-repeat;
+    min-height: 50svh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    color: var(--text-light);
+  }
+
+  @media (max-width: 760px) {
+    .hero { background-attachment: scroll; background-position: center top; }
+    #foto-mempelai { background-attachment: scroll; background-position: 35% 60%; min-height: 90svh; }
+    #footer { min-height: 44svh; }
+  }
+  @media (max-width: 480px) {
+    .section { padding: 44px 12px; }
+    .card { padding: 18px; border-radius: 14px; }
+    .btn { padding: 10px 14px; font-size: 14px; }
+    .name-gif { width: clamp(200px, 66vw, 680px); }
+    .hero .actions { bottom: 8vh; }
+    #foto-mempelai { min-height: 80svh; background-position: 40% 65%; }
+    #footer { min-height: 40svh; }
+    #footer .name-gif { width: clamp(200px, 66vw, 680px); }
+  }
+  @media (max-height: 600px) and (max-width: 760px) {
+    .hero { min-height: 88svh; }
+    .hero .actions { bottom: 6vh; }
+  }
   </style>
 
 <script>
@@ -1537,25 +1571,23 @@
       <p class="muted" style="color:#462159; text-align:center; margin-bottom:16px;">Jika berkenan mengirim hadiah, berikut nomor rekening:</p>
 
      
-        <div class="card amplop-card">
-          <h2>Fadillah Istiqomah</h2>
-          <ul class="list">
-            <li>Bank BRI</li>
-            <li><strong class="rekening">107001017570503</strong></li>
-          </ul>
-          <button class="btn btn-ghost" data-copy="107001017570503" style="margin-top:10px;">Salin Nomor</button>
-        </div>
-
-        <br>
-        <br>
-
-        <div class="card amplop-card">
-          <h2>Achmad Jatnika</h2>
-          <ul class="list">
-            <li>Bank BRI</li>
-            <li><strong class="rekening">429601001173506</strong></li>
-          </ul>
-          <button class="btn btn-ghost" data-copy="429601001173506" style="margin-top:10px;">Salin Nomor</button>
+        <div class="amplop-grid">
+          <div class="card amplop-card">
+            <h2>Fadillah Istiqomah</h2>
+            <ul class="list">
+              <li>Bank BRI</li>
+              <li><strong class="rekening">107001017570503</strong></li>
+            </ul>
+            <button class="btn btn-ghost" data-copy="107001017570503" style="margin-top:10px;">Salin Nomor</button>
+          </div>
+          <div class="card amplop-card">
+            <h2>Achmad Jatnika</h2>
+            <ul class="list">
+              <li>Bank BRI</li>
+              <li><strong class="rekening">429601001173506</strong></li>
+            </ul>
+            <button class="btn btn-ghost" data-copy="429601001173506" style="margin-top:10px;">Salin Nomor</button>
+          </div>
         </div>
 
       <script>
@@ -1586,7 +1618,7 @@
     </div>
   </section>
 
-  <section class="section" id="footer" style="background: url('assets/bg_hero.png') center/cover no-repeat; min-height: 50svh; display: grid; place-items: center; text-align: center; color: var(--text-light);">
+  <section class="section" id="footer">
     
     <div class="inner">
        <p class="wd-sub" style="font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; color:#462159; text-align:center; margin: 0 0 18px;">
