@@ -215,8 +215,13 @@
     .countdown .started { font-weight:700; font-size: 16px; }
 
     .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    .hero .actions { position: absolute; bottom: 8vh; left: 50%; transform: translateX(-50%);  z-index: 2; /* pastikan di atas overlay */}
-    @media (min-height: 700px) { .hero .actions { bottom: 12vh; } }
+    .hero .actions {
+      /* posisi default agar button mengikuti flow normal di bawah greeting */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
     .btn { appearance: none; border: none; border-radius: 999px; padding: 12px 18px; font-weight: 700; cursor: pointer; text-decoration: none; transition: transform 0.12s ease, filter 0.12s ease, background 0.2s ease; will-change: transform; }
     .btn:active { transform: translateY(1px) scale(0.99); }
     .btn-primary { background: #462159; color: white; box-shadow: 0 8px 18px rgba(37,99,235,0.35); }
@@ -674,7 +679,7 @@
     .btn { padding: 10px 14px; font-size: 14px; }
     .name-gif { width: clamp(200px, 66vw, 680px); }
     .hero .actions { bottom: 8vh; }
-    #foto-mempelai { min-height: 80svh; background-position: 40% 65%; }
+    #foto-mempelai { min-height: 100svh; background-position: 40% 65%; }
     #footer { min-height: 40svh; }
     #footer .name-gif { width: clamp(200px, 66vw, 680px); }
   }
@@ -820,16 +825,29 @@
     @media (prefers-reduced-motion: reduce) {
       .petal { animation: none; display: none; }
     }
+
+    .hero-greeting {
+      margin: 0;
+    }
+    .hero .actions {
+      margin-top: 18px;
+      margin-bottom: 100px;
+    }
   </style>
   <header class="hero">
     <!-- Dekor GIF kiri atas & kanan bawah -->
     <img class="decor decor-left" src="assets/hero_gif.gif" alt="Dekor kiri atas" />
     <img class="decor decor-right" src="assets/hero_gif.gif" alt="Dekor kanan bawah" />
+    
+  <div class="hero-content">
+    <div class="hero-greeting" id="heroGreeting" style="font-family: 'LucianSchoenschrift', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, 'Helvetica Neue', sans-serif; font-weight: 400; color: #462159; font-size: clamp(28px, 6vw, 48px); margin: 0; text-align: center; opacity: 0; animation: fadeIn 2s ease-out 0.5s forwards; position: relative; z-index: 3;">
+      <span>Kepada Yth </span><span id="guestName" style="font-weight: 400; font-size: clamp(28px, 6vw, 48px); color: #462159;"></span>
+    </div>
     <img class="name-gif" src="assets/nama.gif" alt="Nama Dilla & Adit" />
-     <div class="actions">
-        <a class="btn btn-primary" href="#foto-mempelai">Buka Undangan</a>
-      </div>
-
+    <div class="actions">
+      <a class="btn btn-primary" href="#foto-mempelai">Buka Undangan</a>
+    </div>
+  </div>
     <!-- <div class="hero-card" role="banner" aria-label="Undangan Pernikahan"> -->
       <!-- <p class="eyebrow">wedding invitation</p>
       <div class="hero-names" aria-label="Nama Mempelai">
@@ -844,6 +862,37 @@
   </header>
 
   <script>
+    // Extract guest name from URL parameter and display personalized greeting
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('nama') || urlParams.get('to') || urlParams.get('guest');
+      const guestNameEl = document.getElementById('guestName');
+      const heroGreeting = document.getElementById('heroGreeting');
+      
+      if (guestName && guestNameEl && heroGreeting) {
+        // Decode URI component and clean up the name
+        let decodedName = decodeURIComponent(guestName);
+        
+        // Handle common URL encoding issues and clean up
+        decodedName = decodedName
+          .replace(/\+/g, ' ')  // Replace + with spaces
+          .replace(/\s+/g, ' ') // Replace multiple spaces with single space
+          .trim();              // Remove leading/trailing spaces
+        
+        // Capitalize first letter of each word for proper name formatting
+        decodedName = decodedName.replace(/\b\w/g, l => l.toUpperCase());
+        
+        guestNameEl.textContent = decodedName;
+        heroGreeting.style.display = 'block';
+        
+        // Log for testing purposes (can be removed in production)
+        console.log('Guest name displayed:', decodedName);
+      } else if (heroGreeting) {
+        // Hide the greeting if no name parameter is found
+        heroGreeting.style.display = 'none';
+      }
+    });
+
     // Autoplay music after first click on "Buka Undangan"
     document.addEventListener('DOMContentLoaded', () => {
       const openBtn = document.querySelector('header.hero .actions .btn.btn-primary[href^="#"]');
